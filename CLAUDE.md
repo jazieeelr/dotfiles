@@ -15,14 +15,74 @@ Dotfiles repo for customizing (ricing) Arch Linux. The roadmap is in `RICE.md`.
 - Originals backed up: `~/.zshrc.bak`, `~/.config/niri.bak/`.
 
 ## Current state
-- Fonts: `ttf-lilex-nerd` (default, `Lilex Nerd Font Mono`) and `maplemono-nf` (AUR, `Maple Mono NF`).
-- alacritty: Lilex 10.5, opacity 0.6, padding 4, live reload. Provisional palette (it will change).
+- Fonts: `maplemono-nf` (AUR, `Maple Mono NF`, the one in use) and `ttf-lilex-nerd` (`Lilex Nerd Font Mono`, alternative).
+- alacritty: Maple Mono NF 10.5 (Lilex commented out), opacity 0.6, padding 4 + `dynamic_padding`, live reload, angel palette applied.
+- niri: `gaps 8`; `layout.background-color "#0c0c0c29"`; **no borders** (`focus-ring off`, `border off`); global `draw-border-with-background false`; active window = centered gold glow (`shadow` `#cdac7140`, `inactive-color` transparent); inactive windows at `opacity 0.5`.
 - zsh: minimal config + zsh-autosuggestions, starship and zsh-syntax-highlighting (last).
 - Wallpaper: `wallpapers/wallhaven-xew6xd.png` (black angel with a gold halo) via `swaybg` in `niri/config.kdl`, plus a `layer-rule` with `place-within-backdrop` for the Overview.
-- **Next:** extract the palette from the angel (base black/gray/marble + gold; possible deep-purple accent) and apply it to alacritty, niri, waybar, etc.
+- **Next:** apply the "Palette" section to waybar, fuzzel, etc. (and decide whether to use the purple accent).
+
+## Palette (from the angel)
+Extracted with ImageMagick from `wallpapers/wallhaven-xew6xd.png`. **Use these values in every config** (alacritty, niri, waybar, fuzzel, mako, swaylock, regreet…).
+
+Base (measured from the image):
+| Name       | Hex       | Use                                   | Source          |
+|------------|-----------|---------------------------------------|-----------------|
+| `bg`       | `#121212` | main background                       | wallpaper background (dominant) |
+| `surface`  | `#1f1f20` | bars, panels, inactive cells          | shadows |
+| `overlay`  | `#272727` | hover, selection, separators          | statue |
+| `stone`    | `#524d46` | inactive borders, comments, dim text  | warm stone of the statue |
+| `fg`       | `#d8d2c4` | main text (warm marble)               | derived from the gold, desaturated |
+
+Gold (measured from the halo):
+| Name          | Hex       | Use                                    |
+|---------------|-----------|----------------------------------------|
+| `gold`        | `#cdac71` | **main accent**: focus, active workspace, cursor |
+| `gold-light`  | `#d4bb89` | highlighted text, hover over accent    |
+| `gold-dim`    | `#ac9162` | secondary accent                       |
+| `bronze`      | `#8c6c36` | subtle borders, accent backgrounds     |
+| `bronze-dark` | `#56462e` | very subtle accent background, selection |
+
+Optional accent (**not** from the image, pending decision): deep purple `#4a2c6e`.
+
+ANSI terminal colors (derived: muted and warm to match the base):
+| Color   | normal    | bright    |
+|---------|-----------|-----------|
+| black   | `#1f1f20` | `#524d46` |
+| red     | `#9e4b4b` | `#b86464` |
+| green   | `#7d8c5c` | `#96a673` |
+| yellow  | `#cdac71` | `#d4bb89` |
+| blue    | `#5d6f8a` | `#7688a3` |
+| magenta | `#7a5c8a` | `#9479a3` |
+| cyan    | `#5f8580` | `#789e98` |
+| white   | `#c8c2b6` | `#e6e0d4` |
+
+Re-extract: `magick <img> -resize 25% -colors 16 -format '%c' histogram:info:- | sort -rn`
 
 ## Aesthetic
 Dark, sober and elegant. Nothing bright. Black base; accents in gold (from the wallpaper) and possibly deep purple or strong blue.
+
+## Auditor agents
+When the user asks to "launch an auditor agent" for a problem:
+
+1. **Communication channel**
+   - Launch the agent in the background, **read-only**: no edits, installs, kills or launching processes.
+   - In its prompt, require it to send a progress message (SendMessage to the main session) at every relevant step: what it checks, what it finds, and what it rules out.
+   - Relay each report to the user in short messages, in Spanish, as they arrive. Don't wait until the end.
+   - To ask for more detail or new checks, keep talking to the same agent with SendMessage instead of launching another.
+
+2. **Log file (bitácora)**
+   - Every log goes **only** in the `audits/` folder at the repo root, never next to the configs (`niri/`, `alacritty/`, `zsh/`, etc.). `audits/` is never added to `install.sh` and is never linked into `$HOME`.
+   - One file per problem: `audits/YYYY-MM-DD-<problem-slug>.md`, created **before** launching the agent.
+   - The main session maintains it (the auditor stays read-only). Update it with every report and with every change applied.
+   - Sections:
+     - `## Problem`: symptom and context.
+     - `## Log`: timestamped entries (`HH:MM`): checks, findings, failures.
+     - `## Proposals`: candidate fixes, with pros and cons.
+     - `## Changes applied`: what was changed, in which file, and the commit.
+     - `## Solution`: final cause and fix, or the reason it stays open.
+     - `## Status`: `open` / `resolved` / `discarded`.
+   - Only apply fixes once the user approves them, and record that in the log.
 
 ## How to work with the user
 - Speak in Spanish.

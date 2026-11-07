@@ -3,45 +3,56 @@ live_config_reload = true
 
 [window]
 padding = { x = 4, y = 4 }
+dynamic_padding = true
 opacity = 0.6
 decorations = "None"
 
 [font]
 size = 10.5
-normal = { family = "Lilex Nerd Font Mono", style = "Regular" }
-# normal = { family = "Maple Mono NF", style = "Regular" }
+# normal = { family = "Lilex Nerd Font Mono", style = "Regular" }
+normal = { family = "Maple Mono NF", style = "Regular" }
 
 [cursor]
 style = { shape = "Beam", blinking = "On" }
 
+# Palette from the angel (see "Palette" in CLAUDE.md)
+
 [colors.primary]
-background = "#0b0b10"
-foreground = "#c8c8d8"
+background = "#121212"  # bg
+foreground = "#d8d2c4"  # fg
 
 [colors.cursor]
-text = "#0b0b10"
-cursor = "#7c5cc4"
+text = "#121212"        # bg
+cursor = "#cdac71"      # gold
 
 [colors.selection]
 text = "CellForeground"
-background = "#2a2340"
+background = "#56462e"  # bronze-dark
+
+[colors.search.matches]
+foreground = "#121212"
+background = "#ac9162"  # gold-dim
+
+[colors.search.focused_match]
+foreground = "#121212"
+background = "#cdac71"  # gold
 
 [colors.normal]
-black   = "#16161e"
-red     = "#c2546a"
-green   = "#6a9f7e"
-yellow  = "#c4a26a"
-blue    = "#2a4a9a"
-magenta = "#5b3fa0"
-cyan    = "#4a8aa8"
-white   = "#c8c8d8"
+black   = "#1f1f20"
+red     = "#9e4b4b"
+green   = "#7d8c5c"
+yellow  = "#cdac71"
+blue    = "#5d6f8a"
+magenta = "#7a5c8a"
+cyan    = "#5f8580"
+white   = "#c8c2b6"
 
 [colors.bright]
-black   = "#3a3a4a"
-red     = "#d66f84"
-green   = "#82b896"
-yellow  = "#d8bb86"
-blue    = "#4a6cc4"
-magenta = "#7c5cc4"
-cyan    = "#66a6c4"
-white   = "#e6e6f0"
+black   = "#524d46"
+red     = "#b86464"
+green   = "#96a673"
+yellow  = "#d4bb89"
+blue    = "#7688a3"
+magenta = "#9479a3"
+cyan    = "#789e98"
+white   = "#e6e0d4"
