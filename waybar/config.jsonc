@@ -1,0 +1,27 @@
+// Waybar mínima. Se personaliza después.
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 24,
+
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "network", "battery"],
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A %d %B %Y}"
+  },
+  "pulseaudio": {
+    "format": "vol {volume}%",
+    "format-muted": "mute"
+  },
+  "network": {
+    "format-wifi": "{essid}",
+    "format-ethernet": "eth",
+    "format-disconnected": "offline"
+  },
+  "battery": {
+    "format": "bat {capacity}%"
+  }
+}

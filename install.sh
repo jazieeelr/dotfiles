@@ -9,6 +9,7 @@ LINKS=(
   "alacritty|$HOME/.config/alacritty"
   "zsh/.zshrc|$HOME/.zshrc"
   "niri|$HOME/.config/niri"
+  "waybar|$HOME/.config/waybar"
 )
 
 link() {
