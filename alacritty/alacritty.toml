@@ -1,0 +1,47 @@
+[general]
+live_config_reload = true
+
+[window]
+padding = { x = 4, y = 4 }
+opacity = 0.6
+decorations = "None"
+
+[font]
+size = 10.5
+normal = { family = "Lilex Nerd Font Mono", style = "Regular" }
+# normal = { family = "Maple Mono NF", style = "Regular" }
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+
+[colors.primary]
+background = "#0b0b10"
+foreground = "#c8c8d8"
+
+[colors.cursor]
+text = "#0b0b10"
+cursor = "#7c5cc4"
+
+[colors.selection]
+text = "CellForeground"
+background = "#2a2340"
+
+[colors.normal]
+black   = "#16161e"
+red     = "#c2546a"
+green   = "#6a9f7e"
+yellow  = "#c4a26a"
+blue    = "#2a4a9a"
+magenta = "#5b3fa0"
+cyan    = "#4a8aa8"
+white   = "#c8c8d8"
+
+[colors.bright]
+black   = "#3a3a4a"
+red     = "#d66f84"
+green   = "#82b896"
+yellow  = "#d8bb86"
+blue    = "#4a6cc4"
+magenta = "#7c5cc4"
+cyan    = "#66a6c4"
+white   = "#e6e6f0"
