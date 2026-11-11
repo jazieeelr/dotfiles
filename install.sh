@@ -10,6 +10,14 @@ LINKS=(
   "zsh/.zshrc|$HOME/.zshrc"
   "niri|$HOME/.config/niri"
   "waybar|$HOME/.config/waybar"
+  "fuzzel|$HOME/.config/fuzzel"
+  "applications/xgps.desktop|$HOME/.local/share/applications/xgps.desktop"
+  "applications/xgpsspeed.desktop|$HOME/.local/share/applications/xgpsspeed.desktop"
+  "applications/qv4l2.desktop|$HOME/.local/share/applications/qv4l2.desktop"
+  "applications/qvidcap.desktop|$HOME/.local/share/applications/qvidcap.desktop"
+  "applications/Alacritty.desktop|$HOME/.local/share/applications/Alacritty.desktop"
+  "applications/brave-browser.desktop|$HOME/.local/share/applications/brave-browser.desktop"
+  "applications/yazi.desktop|$HOME/.local/share/applications/yazi.desktop"
 )
 
 link() {
