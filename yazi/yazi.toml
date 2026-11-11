@@ -1,0 +1,10 @@
+# yazi: file manager (TUI). Linked to ~/.config/yazi via install.sh.
+
+[mgr]
+# Columns: parent | current | preview (tuned for 1366x768)
+ratio          = [1, 3, 4]
+sort_by        = "natural"
+sort_dir_first = true
+show_hidden    = false
+show_symlink   = true
+linemode       = "none"

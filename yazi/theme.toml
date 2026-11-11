@@ -1,0 +1,99 @@
+# yazi: angel palette (see CLAUDE.md, "Palette" section).
+# No background colors on panes: alacritty's transparency shows through.
+#
+# bg #121212 · surface #1f1f20 · overlay #272727 · stone #524d46 · fg #d8d2c4
+# gold #cdac71 · gold-light #d4bb89 · gold-dim #ac9162 · bronze #8c6c36 · bronze-dark #56462e
+
+[mgr]
+cwd = { fg = "#cdac71", italic = true }
+
+find_keyword  = { fg = "#d4bb89", bold = true, underline = true }
+find_position = { fg = "#ac9162", italic = true }
+
+marker_copied   = { fg = "#7d8c5c", bg = "#7d8c5c" }
+marker_cut      = { fg = "#9e4b4b", bg = "#9e4b4b" }
+marker_marked   = { fg = "#5f8580", bg = "#5f8580" }
+marker_selected = { fg = "#cdac71", bg = "#cdac71" }
+
+count_copied   = { fg = "#121212", bg = "#7d8c5c" }
+count_cut      = { fg = "#121212", bg = "#9e4b4b" }
+count_selected = { fg = "#121212", bg = "#cdac71" }
+
+border_symbol = "│"
+border_style  = { fg = "#524d46" }
+
+[indicator]
+parent  = { fg = "#d8d2c4", bg = "#272727" }
+current = { fg = "#121212", bg = "#cdac71", bold = true }
+preview = { fg = "#d8d2c4", bg = "#272727" }
+
+[tabs]
+active   = { fg = "#121212", bg = "#cdac71", bold = true }
+inactive = { fg = "#ac9162", bg = "#1f1f20" }
+
+[mode]
+normal_main = { fg = "#121212", bg = "#cdac71", bold = true }
+normal_alt  = { fg = "#cdac71", bg = "#1f1f20" }
+select_main = { fg = "#121212", bg = "#ac9162", bold = true }
+select_alt  = { fg = "#ac9162", bg = "#1f1f20" }
+unset_main  = { fg = "#121212", bg = "#8c6c36", bold = true }
+unset_alt   = { fg = "#8c6c36", bg = "#1f1f20" }
+
+[status]
+overall   = { fg = "#d8d2c4" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+progress_label  = { fg = "#d8d2c4", bold = true }
+progress_normal = { fg = "#cdac71", bg = "#1f1f20" }
+progress_error  = { fg = "#9e4b4b", bg = "#1f1f20" }
+
+perm_type  = { fg = "#cdac71" }
+perm_read  = { fg = "#d4bb89" }
+perm_write = { fg = "#b86464" }
+perm_exec  = { fg = "#96a673" }
+perm_sep   = { fg = "#524d46" }
+
+[input]
+border   = { fg = "#cdac71" }
+title    = { fg = "#cdac71" }
+value    = { fg = "#d8d2c4" }
+selected = { bg = "#56462e" }
+
+[cmp]
+border = { fg = "#cdac71" }
+
+[tasks]
+border  = { fg = "#cdac71" }
+title   = { fg = "#cdac71" }
+hovered = { fg = "#121212", bg = "#cdac71" }
+
+[which]
+mask = { bg = "#1f1f20" }
+cand = { fg = "#cdac71" }
+rest = { fg = "#524d46" }
+desc = { fg = "#d8d2c4" }
+
+[help]
+on      = { fg = "#cdac71" }
+run     = { fg = "#d8d2c4" }
+hovered = { bg = "#272727", bold = true }
+footer  = { fg = "#121212", bg = "#cdac71" }
+
+[filetype]
+rules = [
+  # Media
+  { mime = "image/*", fg = "#7a5c8a" },
+  { mime = "{audio,video}/*", fg = "#5d6f8a" },
+  # Archives
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#9e4b4b" },
+  # Documents
+  { mime = "application/{pdf,doc,rtf}", fg = "#7d8c5c" },
+  # Broken links / orphans
+  { url = "*", is = "orphan", fg = "#b86464" },
+  # Executables
+  { url = "*", is = "exec", fg = "#96a673" },
+  # Fallback
+  { url = "*", fg = "#d8d2c4" },
+  { url = "*/", fg = "#cdac71", bold = true },
+]
