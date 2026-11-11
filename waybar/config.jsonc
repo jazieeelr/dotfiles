@@ -1,5 +1,6 @@
-// Waybar mínima. Se personaliza después.
+// Waybar abajo con módulos dorados flotando. Estilo en style.css.
 {
+  "reload_style_on_change": true,
   "layer": "top",
   "position": "bottom",
   "height": 24,
@@ -10,7 +11,7 @@
 
   "modules-left": ["niri/workspaces", "niri/window"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "battery"],
+  "modules-right": ["pulseaudio", "network"],
 
   "niri/window": {
     "format": "{title}",
@@ -33,8 +34,5 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "format-ethernet": "eth",
     "format-disconnected": "offline"
-  },
-  "battery": {
-    "format": "bat {capacity}%"
   }
 }

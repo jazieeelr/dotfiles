@@ -10,7 +10,7 @@ Dotfiles repo for customizing (ricing) Arch Linux. The roadmap is in `RICE.md`.
 ## Structure and links
 - All config lives in the repo and is linked into `$HOME` with `./install.sh` (list `LINKS`, format `repo-path|destination`).
 - `install.sh` is idempotent: it skips links that are already correct and backs up what it replaces as `*.bak` (or `*.bak.<date>`).
-- Current links: `alacritty/` → `~/.config/alacritty`, `zsh/.zshrc` → `~/.zshrc`, `niri/` → `~/.config/niri`.
+- Current links: `alacritty/` → `~/.config/alacritty`, `zsh/.zshrc` → `~/.zshrc`, `niri/` → `~/.config/niri`, `waybar/` → `~/.config/waybar`.
 - **Never edit files in `~/.config` directly**: edit the repo copy and link it with `install.sh`.
 - Originals backed up: `~/.zshrc.bak`, `~/.config/niri.bak/`.
 
@@ -20,7 +20,9 @@ Dotfiles repo for customizing (ricing) Arch Linux. The roadmap is in `RICE.md`.
 - niri: `gaps 8`; `layout.background-color "#0c0c0c29"`; **no borders** (`focus-ring off`, `border off`); global `draw-border-with-background false`; active window = centered gold glow (`shadow` `#cdac7140`, `inactive-color` transparent); inactive windows at `opacity 0.5`.
 - zsh: minimal config + zsh-autosuggestions, starship and zsh-syntax-highlighting (last).
 - Wallpaper: `wallpapers/wallhaven-xew6xd.png` (black angel with a gold halo) via `swaybg` in `niri/config.kdl`, plus a `layer-rule` with `place-within-backdrop` for the Overview.
-- **Next:** apply the "Palette" section to waybar, fuzzel, etc. (and decide whether to use the purple accent).
+- waybar (`waybar/`, started by `spawn-at-startup` in niri): bottom, height 24, 6px margin on all sides, transparent bar (`exclusive` default, windows don't go under it), `reload_style_on_change`. Modules: `niri/workspaces` + `niri/window` (max 50) | `clock` | `pulseaudio` (level icons) + `network` (wifi icon + signal %, SSID in tooltip). No battery (desktop PC). Each module is a solid `gold` pill (radius 8) with `bg` text, hover `gold-light` with 200ms transition; active workspace inverted (`bg` background, `gold` number), inactive in `bronze-dark`. Tooltips: `bg` background, 1px `gold` border, radius 8, `fg` text (inner GTK layers made transparent so the corners round).
+- Tried and discarded on waybar: glass bar with niri blur (`layer-rule` + `background-effect { blur true; xray false }`, which niri 26.04 supports) and semi-transparent gold modules over windows.
+- **Next:** apply the "Palette" section to fuzzel, mako, swaylock, etc. (and decide whether to use the purple accent).
 
 ## Palette (from the angel)
 Extracted with ImageMagick from `wallpapers/wallhaven-xew6xd.png`. **Use these values in every config** (alacritty, niri, waybar, fuzzel, mako, swaylock, regreet…).
@@ -83,6 +85,13 @@ When the user asks to "launch an auditor agent" for a problem:
      - `## Solution`: final cause and fix, or the reason it stays open.
      - `## Status`: `open` / `resolved` / `discarded`.
    - Only apply fixes once the user approves them, and record that in the log.
+
+## Several agents in parallel
+Several Claude sessions may be working on the repo at the same time, each on its own part of the rice.
+- An agent may only modify `CLAUDE.md` and the files of the component its session is about (e.g. a waybar session: only `waybar/`; a yazi session: only `yazi/`).
+- Changes to shared files (`install.sh`, `niri/config.kdl`, `RICE.md`, other components' folders…) are for the session that owns them. If yours needs one, tell the user and let them decide; don't edit it.
+- Uncommitted changes you didn't make belong to another agent: don't revert, overwrite or commit them. When committing, `git add` only your own files, never `git add -A`/`.`.
+- When editing `CLAUDE.md`, touch only the lines for your component and keep the rest as it is.
 
 ## How to work with the user
 - Speak in Spanish.

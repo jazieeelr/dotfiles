@@ -20,13 +20,22 @@ window#waybar {
 #window,
 #clock,
 #pulseaudio,
-#network,
-#battery {
+#network {
   background: #cdac71; /* gold */
   color: #121212;      /* bg */
   border-radius: 8px;
   padding: 0 10px;
   margin: 3px 4px;
+  transition: background 200ms ease;
+}
+
+/* Hover: el módulo se aclara a gold-light. */
+#workspaces:hover,
+#window:hover,
+#clock:hover,
+#pulseaudio:hover,
+#network:hover {
+  background: #d4bb89; /* gold-light */
 }
 
 /* Botones de workspace: sin fondo propio, dentro de la píldora. */
@@ -41,6 +50,19 @@ tooltip {
   background: #121212;          /* bg */
   border: 1px solid #cdac71;    /* gold */
   border-radius: 8px;
+}
+
+/* El fondo negro en esquinas rectas viene de capas internas de GTK
+   (decoration, contenedores) que pintan su propio fondo: se vuelven
+   transparentes para que solo se vea el fondo redondeado del tooltip. */
+tooltip decoration {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+tooltip * {
+  background: transparent;
 }
 
 tooltip label {
