@@ -13,6 +13,7 @@ Dotfiles repo for customizing (ricing) Arch Linux. The roadmap is in `RICE.md`.
 - Current links: `alacritty/` → `~/.config/alacritty`, `zsh/.zshrc` → `~/.zshrc`, `niri/` → `~/.config/niri`, `waybar/` → `~/.config/waybar`.
 - **Never edit files in `~/.config` directly**: edit the repo copy and link it with `install.sh`.
 - Originals backed up: `~/.zshrc.bak`, `~/.config/niri.bak/`.
+- `audits/` and `notes/` are working folders: they are never added to `install.sh` and never linked into `$HOME`.
 
 ## Current state
 - Fonts: `maplemono-nf` (AUR, `Maple Mono NF`, the one in use) and `ttf-lilex-nerd` (`Lilex Nerd Font Mono`, alternative).
@@ -87,11 +88,28 @@ When the user asks to "launch an auditor agent" for a problem:
    - Only apply fixes once the user approves them, and record that in the log.
 
 ## Several agents in parallel
-Several Claude sessions may be working on the repo at the same time, each on its own part of the rice.
-- An agent may only modify `CLAUDE.md` and the files of the component its session is about (e.g. a waybar session: only `waybar/`; a yazi session: only `yazi/`).
+Several Claude sessions work on the repo at the same time. There are two roles. The role is given by the user in the first message.
+
+### Component agents (default)
+Every session is a component agent unless the user says "you are the JEFE".
+- May only modify `CLAUDE.md` (only the lines of their component) and the files of their component (e.g. a waybar session: only `waybar/`; a yazi session: only `yazi/`).
 - Changes to shared files (`install.sh`, `niri/config.kdl`, `RICE.md`, other components' folders…) are for the session that owns them. If yours needs one, tell the user and let them decide; don't edit it.
-- Uncommitted changes you didn't make belong to another agent: don't revert, overwrite or commit them. When committing, `git add` only your own files, never `git add -A`/`.`.
+- **Do NOT commit, stage or push.** Leave your changes uncommitted in the working tree. The JEFE commits.
+- Uncommitted changes you didn't make belong to another agent: don't revert or overwrite them.
+- When you finish a change, append a short entry to `notes/<component>.md` (date, what changed, why, how it was validated). The JEFE reads it.
 - When editing `CLAUDE.md`, touch only the lines for your component and keep the rest as it is.
+
+### JEFE (only when the user says so)
+Reviews and commits the work of the component agents; does not design components itself and does not edit component files (if something is wrong, report it to the user so the component agent fixes it).
+- Flow:
+  1. `git status` and `git diff` per component; read `notes/<component>.md`.
+  2. Validate: `niri validate -c niri/config.kdl`, `zsh -n`, waybar `config.jsonc` parses and `style.css` has no syntax errors, etc.
+  3. Check that each agent stayed inside its own folder, and that no secrets, tokens or personal data slipped in.
+  4. One commit per component: `git add <component>/` (never `-A` or `.`). Message format: `waybar: short description`.
+  5. `CLAUDE.md` is committed separately, in its own commit, after reviewing its diff line by line.
+- If an agent touched files outside its component, don't commit those: report it to the user.
+- `notes/` and `audits/` are not committed unless the user asks.
+- Before `git push`, show the list of commits to be pushed and wait for the user's OK.
 
 ## How to work with the user
 - Speak in Spanish.
