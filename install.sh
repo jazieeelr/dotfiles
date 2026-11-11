@@ -10,6 +10,7 @@ LINKS=(
   "zsh/.zshrc|$HOME/.zshrc"
   "niri|$HOME/.config/niri"
   "waybar|$HOME/.config/waybar"
+  "yazi|$HOME/.config/yazi"
   "fuzzel|$HOME/.config/fuzzel"
   "applications/xgps.desktop|$HOME/.local/share/applications/xgps.desktop"
   "applications/xgpsspeed.desktop|$HOME/.local/share/applications/xgpsspeed.desktop"
