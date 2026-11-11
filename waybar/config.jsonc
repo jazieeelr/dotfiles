@@ -3,21 +3,34 @@
   "layer": "top",
   "position": "bottom",
   "height": 24,
+  "margin-top": 6,
+  "margin-bottom": 6,
+  "margin-left": 6,
+  "margin-right": 6,
 
-  "modules-left": ["niri/workspaces"],
+  "modules-left": ["niri/workspaces", "niri/window"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "network", "battery"],
 
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 50
+  },
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%A %d %B %Y}"
   },
   "pulseaudio": {
-    "format": "vol {volume}%",
-    "format-muted": "mute"
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 mute",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    }
   },
   "network": {
-    "format-wifi": "{essid}",
+    "format-wifi": "{icon} {signalStrength}%",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "format-ethernet": "eth",
     "format-disconnected": "offline"
   },

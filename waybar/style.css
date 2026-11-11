@@ -1,0 +1,56 @@
+/* Waybar: barra transparente (se ve el wallpaper) y cada módulo es una
+   "píldora" dorada que flota, con el texto en el color del fondo.
+   Paleta del ángel (ver CLAUDE.md). */
+
+* {
+  font-family: "Maple Mono NF";
+  font-size: 12px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+/* La barra no tiene fondo propio: los módulos parecen flotar. */
+window#waybar {
+  background: transparent;
+}
+
+/* Cada módulo: bloque dorado con texto del color del fondo. */
+#workspaces,
+#window,
+#clock,
+#pulseaudio,
+#network,
+#battery {
+  background: #cdac71; /* gold */
+  color: #121212;      /* bg */
+  border-radius: 8px;
+  padding: 0 10px;
+  margin: 3px 4px;
+}
+
+/* Botones de workspace: sin fondo propio, dentro de la píldora. */
+#workspaces button {
+  background: transparent;
+  color: #56462e; /* bronze-dark: workspaces inactivos */
+  padding: 0 4px;
+}
+
+/* Tooltip: fondo oscuro, borde dorado fino y texto mármol. */
+tooltip {
+  background: #121212;          /* bg */
+  border: 1px solid #cdac71;    /* gold */
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: #d8d2c4; /* fg */
+  padding: 2px 4px;
+}
+
+/* Workspace activo: invertido (fondo oscuro, número dorado). */
+#workspaces button.active {
+  background: #121212; /* bg */
+  color: #cdac71;      /* gold */
+  border-radius: 6px;
+}
